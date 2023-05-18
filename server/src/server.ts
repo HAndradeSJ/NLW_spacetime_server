@@ -1,16 +1,25 @@
 // importações 
 import fastify from 'fastify';
 import { memoriesroutes } from './routes/memories';
+import jwt from '@fastify/jwt'
 import cors from '@fastify/cors'
+import auth from './routes/auth';
+import 'dotenv/config';
 
-// variavel padrão
+// Registros 
 const app = fastify();
 app.register(cors,{
     origin :[true] //todos os enderçoes podem editar 
 })
+app.register(jwt,{
+    // codigo chave do token
+    secret:'spacetime',
+})
 
 // Rota
-app.register(memoriesroutes)
+app.register(auth);
+app.register(memoriesroutes); 
+
 
 // Porta padrão
 app.listen({
