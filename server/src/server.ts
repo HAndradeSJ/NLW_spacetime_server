@@ -1,14 +1,13 @@
 // importações 
 import fastify from 'fastify';
-import { PrismaClient } from '@prisma/client';
+import { memoriesroutes } from './routes/memories';
+
 // variavel padrão
 const app = fastify();
-const Prisma = new PrismaClient()
-// Rotas
-app.get("/users", async ()=>{
-    const users  = await Prisma.user.findMany();
-    return users 
-})
+
+
+// Rota
+app.register(memoriesroutes)
 
 // Porta padrão
 app.listen({
