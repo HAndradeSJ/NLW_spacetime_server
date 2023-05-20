@@ -23,7 +23,8 @@ app.register(memoriesroutes);
 
 // Porta padrão
 app.listen({
-    port: 3333
+    port: 3333,
+    host: '0.0.0.0',
 }).then(()=>{
     console.log("server rodando na porta 3333")
 })
