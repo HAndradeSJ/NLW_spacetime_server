@@ -12,7 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.2.0",
-    "@types/node": "^20.1.4",
+    "@types/node": "^20.2.5",
     "eslint": "^8.40.0",
     "prisma": "^4.14.0",
     "tsx": "^3.12.7",
