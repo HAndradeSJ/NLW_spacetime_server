@@ -11,9 +11,9 @@ const pump = promisify(pipeline)
 
 // rota de autenticação
 export default function UploadRoutes (app:FastifyInstance){
-    app.post('/upload', async (Request,reply)=>{
+    app.post('/upload', async (request,reply)=>{
             // pegando o arquivi da requisição
-            const upload = await Request.file({
+            const upload = await request.file({
                 limits:{
                     fileSize:5242880
                 }
@@ -40,6 +40,9 @@ export default function UploadRoutes (app:FastifyInstance){
         )
         await pump(upload.file, writeStream)
 
+        // criando um url para imagem
+        const fullurl = request.protocol.concat('://').concat(request.hostname)
+        const fileurl = new URL(`/uploads/${Filename}`,fullurl).toString()
         return {ok:true}
     })
    

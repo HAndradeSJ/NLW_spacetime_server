@@ -7,12 +7,18 @@ import cors from '@fastify/cors'
 import auth from './routes/auth';
 import 'dotenv/config';
 import UploadRoutes from './routes/upload';
+import fastifyStatic from '@fastify/static';
+import { resolve } from 'path';
 
 // Registros 
 const app = fastify();
 
 //registrando o multipart
 app.register(Multipart)
+app.register(fastifyStatic,{
+    root:resolve(__dirname,'../uploads'),
+    prefix:'/uploads',
+})
 
 app.register(cors,{
     origin :[true] //todos os enderçoes podem editar 
